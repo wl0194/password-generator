@@ -42,46 +42,44 @@ function getPromtOptions() {
     return passwordOption;
 }
 
-function random_characters(characters) {
+function getRandom(characters) {
     return characters[Math.floor(Math.random() * characters.length)];
 }
 
-
-//generate a password with user input
 function generatePassword() {
     var options = getPromtOptions();
-    var result = [];
     var possibleCharacters = [];
-    var guaranteedCharacters = [];
+
 
     if (options.hasNumericCharacters) {
         possibleCharacters =
-            possibleCharacters.concat(numericCharacters);
-        guaranteedCharacters.push(getRandom(numericCharacters));
+            possibleCharacters.concat(specialCharacters);
     }
     if (options.hasSpecialCharacters) {
         possibleCharacters =
-            possibleCharacters.concat(specialCharacters);
-        guaranteedCharacters.push(getRandom(specialCharacters));
+            possibleCharacters.concat(numericCharacters);
+
     }
     if (options.hasLowercaseCharacters) {
         possibleCharacters =
             possibleCharacters.concat(lowercaseCharacters);
-        guaranteedCharacters.push(getRandom(lowercaseCharacters));
+
     }
     if (options.hasUppercaseCharacters) {
         possibleCharacters =
             possibleCharacters.concat(uppercaseCharacters);
-        guaranteedCharacters.push(getRandom(uppercaseCharacters));
-    }
 
+
+    }
+    window.debugpossible = possibleCharacters
+    var pass = '';
+    for (var i = 0; i < options.length; i++) {
+        pass = pass + possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)];
+    }
+    alert('Password is:' + pass);
+    return pass;
 }
 
-
-//.push to push into special characters to guarantee characters - do it X4
-//iterate for loops 
-
-// Write password to the #password input
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
@@ -89,29 +87,6 @@ function writePassword() {
     passwordText.value = password;
 
 }
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// if length of password is >= 8 and <= 128,
-// the password is valid
-// else
-// the password is invalid
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// var lowercase = true/false???
-// var uppercase = true/false???
-// var numeric = true/false???
-// var special = true/false???
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-// alert("Password is: ....");
+
 
 generateBtn.addEventListener("click", writePassword);
