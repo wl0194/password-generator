@@ -1,7 +1,7 @@
 var numericCharacters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0 '];
 var specialCharacters = ['!', '@', '#', '$', '^', '%', '%', '&'];
-var lowerCase = ['a', 'b', 'c', 'd', 'l', 'f', 'k', 's'];
-var upperCase = ['A', 'B', 'C', 'D', 'L', 'F', 'K', 'S'];
+var lowercaseCharacters = ['a', 'b', 'c', 'd', 'l', 'f', 'k', 's'];
+var uppercaseCharacters = ['A', 'B', 'C', 'D', 'L', 'F', 'K', 'S'];
 
 
 var generateBtn = document.querySelector("#generate");
@@ -41,9 +41,10 @@ function getPromtOptions() {
     };
     return passwordOption;
 }
-//wirte a function to get a random function from an array
-//incldue math.floor outside of a math.random
-function getRandomNumber = [Math.floor(Math.random() * max)];
+
+function random_characters(characters) {
+    return characters[Math.floor(Math.random() * characters.length)];
+}
 
 
 //generate a password with user input
@@ -51,21 +52,31 @@ function generatePassword() {
     var options = getPromtOptions();
     var result = [];
     var possibleCharacters = [];
-    var guaranteeCharacters = [];
+    var guaranteedCharacters = [];
 
-    if (options.hasNumericCharacters.concat()) {
-
+    if (options.hasNumericCharacters) {
+        possibleCharacters =
+            possibleCharacters.concat(numericCharacters);
+        guaranteedCharacters.push(getRandom(numericCharacters));
     }
-    if (options.hasSpecialCharacters.concat()) {
-
+    if (options.hasSpecialCharacters) {
+        possibleCharacters =
+            possibleCharacters.concat(specialCharacters);
+        guaranteedCharacters.push(getRandom(specialCharacters));
     }
-    if (options.hasLowercaseCharacters.concat()) {
-
+    if (options.hasLowercaseCharacters) {
+        possibleCharacters =
+            possibleCharacters.concat(lowercaseCharacters);
+        guaranteedCharacters.push(getRandom(lowercaseCharacters));
     }
-    if (options.hasUppercaseCharacters.concat()) {
-
+    if (options.hasUppercaseCharacters) {
+        possibleCharacters =
+            possibleCharacters.concat(uppercaseCharacters);
+        guaranteedCharacters.push(getRandom(uppercaseCharacters));
     }
+
 }
+
 
 //.push to push into special characters to guarantee characters - do it X4
 //iterate for loops 
